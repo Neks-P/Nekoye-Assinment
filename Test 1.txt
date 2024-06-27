@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age-Based Response Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .form-container {
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .response {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Enter Your Details</h2>
+        <form id="userForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="response" id="response"></div>
+    </div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const age = parseInt(document.getElementById('age').value);
+            const responseDiv = document.getElementById('response');
+            let message;
+
+            if (age < 13) {
+                message = `Hello there little ${username}! Hmmm... Did you finish your homework today?`;
+            } else if (age >= 13 && age < 20) {
+                message = `Howdy, ${username}! Rock that teenagehood as it should be!`;
+            } else if (age >= 20 && age < 60) {
+                message = `Hi, ${username}! You are now at your prime. Break every limit! Don't waste a second!`;
+            } else {
+                message = `Greetings, ${username}! You are still doing life for the first time every day. And you are doing great!`;
+            }
+
+            responseDiv.textContent = message;
+        });
+    </script>
+</body>
+</html>
